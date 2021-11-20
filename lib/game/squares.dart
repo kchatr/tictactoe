@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:tictactoe/game/player.dart';
 import 'package:tictactoe/game/game.dart';
+
+import 'package:confetti/confetti.dart';
 
 class Square extends StatefulWidget {
   final int? pos;
@@ -15,6 +19,18 @@ class _SquaresState extends State<Square> {
   bool playable = Game.getPlayable();
   Color? gridCol = Colors.black87;
   Color? hovCol = Colors.amber[200];
+
+  late ConfettiController controllerCenterRight;
+  late ConfettiController controllerCenterLeft;
+
+  @override
+  void initState() {
+    super.initState();
+    controllerCenterRight =
+        ConfettiController(duration: const Duration(seconds: 10));
+    controllerCenterLeft =
+        ConfettiController(duration: const Duration(seconds: 10));
+  }
 
   void gamePlay() {
     if (Game.winner() != 0) {
@@ -45,9 +61,41 @@ class _SquaresState extends State<Square> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                      title: Center(child: Text("${Game.winner() == 1 ? 'X' : 'O'}'s Win!")));
+                  return Stack(
+                    children: [
+                      AlertDialog(
+                          title: Center(
+                              child: Text(
+                                  "${Game.winner() == 1 ? 'X' : 'O'}'s Win!"))),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: ConfettiWidget(
+                          confettiController: controllerCenterRight,
+                          blastDirection: pi, // radial value - LEFT
+                          particleDrag: 0.05, // apply drag to the confetti
+                          emissionFrequency: 0.05, // how often it should emit
+                          numberOfParticles: 20, // number of particles to emit
+                          gravity: 0.1, // gravity - or fall speed
+                          shouldLoop: false, 
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: ConfettiWidget(
+                          confettiController: controllerCenterLeft,
+                          blastDirection: 0,
+                          particleDrag: 0.05, // radial value - RIGHT
+                          emissionFrequency: 0.05,// set the maximum potential size for the confetti (width, height)
+                          numberOfParticles: 20,
+                          gravity: 0.1,
+                          shouldLoop: false,
+                        ),
+                      ),
+                    ],
+                  );
                 });
+            controllerCenterRight.play();
+            controllerCenterLeft.play();
           }
         },
         onHover: (bool i) {
