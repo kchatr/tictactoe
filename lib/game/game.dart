@@ -3,10 +3,20 @@ import 'dart:math' as math;
 class Game {
   static var board = [List.filled(3, 0), List.filled(3, 0), List.filled(3, 0)];
 
+  static bool _playable = true;
+
   static void updateBoard(int n, int player) {
     int x = (n / 3).ceil() - 1;
     int y = n % 3 == 0 ? 2 : n % 3 - 1;
     board[x][y] = player;
+  }
+
+  static bool getPlayable() {
+    return _playable;
+  }
+
+  static void setPlayable(bool val) {
+    _playable = val;
   }
 
   static int getSquare(int n) {
