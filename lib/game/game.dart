@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 class Game {
   static var board = [List.filled(3, 0), List.filled(3, 0), List.filled(3, 0)];
 
@@ -27,24 +25,25 @@ class Game {
   }
 
   static int winner() {
+    int winner = 0;
     if (getSquare(1) == getSquare(2) && getSquare(2) == getSquare(3)) {
-      return getSquare(1);
+      winner = getSquare(1);
     } else if (getSquare(4) == getSquare(5) && getSquare(4) == getSquare(6)) {
-      return getSquare(4);
+      winner = getSquare(4);
     } else if (getSquare(7) == getSquare(8) && getSquare(8) == getSquare(9)) {
-      return getSquare(7);
+      winner = getSquare(7);
     } else if (getSquare(1) == getSquare(4) && getSquare(4) == getSquare(7)) {
-      return getSquare(1);
+      winner = getSquare(1);
     } else if (getSquare(2) == getSquare(5) && getSquare(5) == getSquare(8)) {
-      return getSquare(2);
+      winner = getSquare(2);
     } else if (getSquare(3) == getSquare(6) && getSquare(6) == getSquare(9)) {
-      return getSquare(3);
+      winner = getSquare(3);
     } else if (getSquare(1) == getSquare(5) && getSquare(5) == getSquare(9)) {
-      return getSquare(1);
+      winner = getSquare(1);
     } else if (getSquare(3) == getSquare(5) && getSquare(5) == getSquare(7)) {
-      return getSquare(3);
-    } else {
-      return 0;
+      winner = getSquare(3);
     }
+
+    return winner;
   }
 }
