@@ -11,19 +11,16 @@ class Board extends StatefulWidget {
 class _BoardState extends State<Board> {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 3,
-        padding: const EdgeInsets.all(20),
-        children: const <Widget>[
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-          Square(),
-        ]);
+    return Expanded(
+      flex: 3,
+      child: GridView(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisExtent: 210,
+        ),
+        padding: const EdgeInsets.only(top: 60, left: 360, right: 360),
+        children: List.generate(9, (int i) => const Square()),
+      ),
+    );
   }
 }
