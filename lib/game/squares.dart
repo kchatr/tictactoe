@@ -41,6 +41,14 @@ class _SquaresState extends State<Square> {
       child: InkWell(
         onTap: () {
           playable ? play() : null;
+          if (Game.winner() != 0) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                      title: Center(child: Text("${Game.winner() == 1 ? 'X' : 'O'}'s Win!")));
+                });
+          }
         },
         onHover: (bool i) {
           if (i && playable) {
