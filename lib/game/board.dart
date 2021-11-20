@@ -11,15 +11,21 @@ class Board extends StatefulWidget {
 class _BoardState extends State<Board> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
-      child: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisExtent: 210,
+    return Material(
+      color: Colors.black,
+      child: Expanded(
+        flex: 3,
+        child: GridView(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisExtent: 210,
+          ),
+          padding: const EdgeInsets.only(top: 60, left: 360, right: 360),
+          children: List.generate(9, (int i) {
+            int index = i + 1;
+            return Square(pos: index);
+          }),
         ),
-        padding: const EdgeInsets.only(top: 60, left: 360, right: 360),
-        children: List.generate(9, (int i) => const Square()),
       ),
     );
   }
