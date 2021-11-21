@@ -18,9 +18,9 @@ class _BoardState extends State<Board> {
         child: GridView(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            mainAxisExtent: 210,
+            mainAxisExtent: 230,
           ),
-          padding: const EdgeInsets.only(top: 60, left: 360, right: 360),
+          padding: const EdgeInsets.only(top: 35, left: 360, right: 360),
           children: List.generate(9, (int i) {
             int index = i + 1;
             return Square(pos: index);
