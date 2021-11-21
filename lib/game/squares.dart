@@ -72,8 +72,8 @@ class _SquaresState extends State<Square> {
                         child: ConfettiWidget(
                           confettiController: controllerCenterRight,
                           blastDirection: pi, // radial value - LEFT
-                          particleDrag: 0.05, // apply drag to the confetti
-                          emissionFrequency: 0.05, // how often it should emit
+                          particleDrag: 0.01, // apply drag to the confetti
+                          emissionFrequency: 0.15, // how often it should emit
                           numberOfParticles: 20, // number of particles to emit
                           gravity: 0.1, // gravity - or fall speed
                           shouldLoop: false, 
@@ -84,8 +84,8 @@ class _SquaresState extends State<Square> {
                         child: ConfettiWidget(
                           confettiController: controllerCenterLeft,
                           blastDirection: 0,
-                          particleDrag: 0.05, // radial value - RIGHT
-                          emissionFrequency: 0.05,// set the maximum potential size for the confetti (width, height)
+                          particleDrag: 0.01, // radial value - RIGHT
+                          emissionFrequency: 0.15,// set the maximum potential size for the confetti (width, height)
                           numberOfParticles: 20,
                           gravity: 0.1,
                           shouldLoop: false,
